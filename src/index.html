@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Combined MVC and Observer Pattern with Details and Summary</title>
+        <style>
+            .hidden {
+                display: none;
+            }
+            details {
+                margin-bottom: 10px;
+                cursor: pointer;
+            }
+            summary {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Organization Chart with Details and Summary</h1>
+        <details id="orgChart">
+            <summary>Click to see employee list</summary>
+            <ul id="orgList"></ul>
+        </details>
+
+        <div id="employeeInfo" class="hidden">
+            <h2>Employee Info</h2>
+            <p><strong>Name:</strong> <span id="empName"></span></p>
+            <p><strong>Position:</strong> <span id="empPosition"></span></p>
+            <p><strong>Age:</strong> <span id="empAge"></span></p>
+        </div>
+        <div>코드를 그냥 외워버린다..? 어떤 의미가 있을까.. ㅋ..</div>
+
+        <script src="app.js"></script>
+    </body>
+</html>
