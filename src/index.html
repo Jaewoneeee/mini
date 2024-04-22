@@ -2,35 +2,157 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Combined MVC and Observer Pattern with Details and Summary</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>조직도</title>
         <style>
             .hidden {
                 display: none;
             }
-            details {
-                margin-bottom: 10px;
-                cursor: pointer;
+            /* details {
+                            margin-bottom: 10px;
+                            cursor: pointer;
+                        }
+                        summary {
+                            font-weight: bold;
+                        } */
+            /* --- */
+            .contents {
+                display: flex;
             }
-            summary {
-                font-weight: bold;
+            .section_chart {
+                width: 300px;
+                height: 300px;
+                margin: 10px;
+                padding: 10px;
+                border: solid 1px black;
+            }
+            .section_info {
+                width: 300px;
+                height: 300px;
+                margin: 10px;
+                padding: 10px;
+                border: solid 1px black;
+            }
+
+            ul {
+                list-style: none;
+                line-height: 2em;
+            }
+
+            .tree summary {
+                cursor: pointer;
+                list-style-type: none;
+            }
+
+            .tree summary::-webkit-details-marker {
+                display: none;
+            }
+
+            ul li {
+                position: relative;
+                /* outline: 1px solid green; */
+            }
+
+            ul li::before {
+                position: absolute;
+                left: -10px;
+                top: 0px;
+                /* TODO: 여기살펴보기 */
+                border-left: 1px solid gray;
+                border-bottom: 1px solid gray;
+                content: "";
+                width: 8px;
+                height: 1em;
+                /* height: 20px; */
+            }
+
+            ul li::after {
+                position: absolute;
+                left: -10px;
+                bottom: 0px;
+                border-left: 1px solid gray;
+                content: "";
+                width: 8px;
+                height: 100%;
+            }
+
+            ul li:last-child::after {
+                display: none;
+            }
+
+            /* ul.tree > li:after,
+            ul.tree > li:before {
+                display: none;
+            } */
+
+            ul summary::before {
+                position: absolute;
+                content: "+";
+                left: -1em;
+                top: 0.7em;
+                background: gray;
+                display: block;
+                width: 13px;
+                height: 13px;
+                /* border-radius: 50em; */
+                z-index: 10;
+                text-align: center;
+                line-height: 1em;
+            }
+
+            ul details[open] > summary::before {
+                content: "-";
             }
         </style>
     </head>
     <body>
-        <h1>Organization Chart with Details and Summary</h1>
-        <details id="orgChart">
-            <summary>Click to see employee list</summary>
-            <ul id="orgList"></ul>
-        </details>
+        <main class="contents">
+            <section class="section_chart">
+                <h2>조직도</h2>
+                <ul class="tree">
+                    <li>
+                        <details id="">
+                            <summary>F-lab</summary>
+                            <ul>
+                                <li>
+                                    <details id="">
+                                        <summary>개발팀</summary>
+                                        <ul>
+                                            <li>김부장</li>
+                                            <li>이대리</li>
+                                            <li>정사원</li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details id="">
+                                        <summary>개발팀</summary>
+                                        <ul>
+                                            <li>김부장</li>
+                                            <li>이대리</li>
+                                            <li>정사원</li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details id="">
+                                        <summary>개발팀</summary>
+                                        <ul>
+                                            <li>김부장</li>
+                                            <li>이대리</li>
+                                            <li>정사원</li>
+                                        </ul>
+                                    </details>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </section>
 
-        <div id="employeeInfo" class="hidden">
-            <h2>Employee Info</h2>
-            <p><strong>Name:</strong> <span id="empName"></span></p>
-            <p><strong>Position:</strong> <span id="empPosition"></span></p>
-            <p><strong>Age:</strong> <span id="empAge"></span></p>
-        </div>
-        <div>코드를 그냥 외워버린다..? 어떤 의미가 있을까.. ㅋ..</div>
-
-        <script src="app.js"></script>
+            <section class="section_info">
+                <h2>부서원</h2>
+            </section>
+        </main>
     </body>
 </html>

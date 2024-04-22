@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>조직도</title>
+        <style>
+            .hidden {
+                display: none;
+            }
+            /* details {
+                            margin-bottom: 10px;
+                            cursor: pointer;
+                        }
+                        summary {
+                            font-weight: bold;
+                        } */
+            /* --- */
+            .contents {
+                display: flex;
+            }
+            .section_chart {
+                width: 300px;
+                height: 300px;
+                margin: 10px;
+                padding: 10px;
+                border: solid 1px black;
+            }
+            .section_info {
+                width: 300px;
+                height: 300px;
+                margin: 10px;
+                padding: 10px;
+                border: solid 1px black;
+            }
+
+            summary::-webkit-details-marker {
+                /* Safari 브라우저용 사용자 정의 스타일 */
+                display: none;
+            }
+            summary {
+                list-style-type: none;
+            }
+            summary {
+                position: relative; /* 이후 설정된 ::before의 위치 기준점 */
+                cursor: pointer;
+                padding-left: 20px; /* 아이콘과 텍스트 간 간격 조정 */
+            }
+
+            /* summary 앞에 + 또는 - 아이콘 추가 */
+            summary::before {
+                content: "+"; /* 기본적으로는 + 표시 */
+                position: absolute;
+                left: 0; /* summary의 맨 앞에 위치 */
+                top: 0;
+                width: 15px; /* 아이콘 크기 */
+                height: 15px;
+                text-align: center; /* 텍스트 중앙 정렬 */
+                border: 1px solid black; /* 네모 박스 스타일 */
+                line-height: 15px; /* 라인 높이를 아이콘 높이에 맞춤 */
+            }
+
+            /* details가 open일 때 - 표시 */
+            details[open] > summary::before {
+                content: "-"; /* 열려 있을 때는 - 표시 */
+            }
+
+            details > details {
+                margin-left: 10px; /* 세부 내용들의 들여쓰기 조정 */
+                padding-left: 10px; /* 세부 내용들의 왼쪽 패딩 조정 */
+                border-left: 2px solid #ccc; /* 왼쪽 세로선 그리기 */
+            }
+
+            details > details:last-child {
+                border-left: none; /* 마지막 요소는 왼쪽 세로선 없음 */
+            }
+
+            details > details:last-child > div {
+                border-left: 2px solid #ccc; /* 마지막 요소의 하위 div는 왼쪽 세로선 있음 */
+            }
+            details > details > div {
+                /* margin-left: 10px;
+                            padding-left: 10px; */
+                border-left: 2px solid #ccc; /* 왼쪽 세로선 그리기 */
+            }
+            .cross-box {
+                position: relative;
+                width: 20px;
+                height: 20px;
+                /* border: 2px solid black; */
+            }
+
+            .cross-box::before,
+            .cross-box::after {
+                content: "";
+                position: absolute;
+                background-color: black;
+            }
+
+            .cross-box::before {
+                top: 0;
+                left: 50%;
+                width: 2px;
+                height: 100%;
+                transform: translateX(-50%);
+            }
+
+            .cross-box::after {
+                top: 50%;
+                left: 0;
+                width: 50%;
+                height: 2px;
+                transform: translateY(-50%);
+            }
+
+            .test .cross-box {
+                transform: scaleX(-1);
+            }
+
+            /* .test .cross-box:last-child::after {
+                top: 50%;
+                left: 0;
+                width: 50%;
+                height: 2px;
+                transform: translateY(-50%);
+            } */
+
+            .test .cross-box:last-child::before {
+                height: 50%; /* 위쪽 절반만 표시 */
+            }
+
+            .test {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .test2 {
+                display: flex;
+            }
+            .tree-view ul {
+                list-style-type: none; /* 기본 목록 스타일 제거 */
+                margin: 0;
+                padding: 0;
+            }
+
+            .tree-view li {
+                cursor: default;
+                user-select: none; /* 텍스트 선택 방지 */
+            }
+
+            .tree-view details > summary {
+                cursor: pointer; /* 포인터 모양 설정 */
+                list-style-type: none; /* 목록 스타일 제거 */
+            }
+
+            .tree-view details[open] > summary {
+                list-style-type: none; /* 열린 상태에서의 스타일 변경 */
+            }
+
+            .tree-view details > summary::before {
+                content: "\25B6"; /* 오른쪽 방향 삼각형 */
+                display: inline-block;
+                margin-right: 5px;
+                transform: rotate(90deg); /* 활성화 시 삼각형 회전 */
+            }
+
+            .tree-view details[open] > summary::before {
+                transform: rotate(90deg); /* 항상 활성화된 상태의 스타일 */
+            }
+        </style>
+    </head>
+    <body>
+        <main class="contents">
+            <section class="section_chart">
+                <h2>조직도</h2>
+                <details id="">
+                    <summary>F-lab</summary>
+                    <details id="">
+                        <summary>
+                            <span>잉</span>
+                            <span>개발팀</span>
+                        </summary>
+                        <div>김부장</div>
+                        <div>- 이대리</div>
+                        <div>정사원</div>
+                    </details>
+                    <details id="">
+                        <summary>
+                            <span> 네모 </span>
+                            <span> 인사팀 </span>
+                        </summary>
+                        <div class="test2">
+                            <div class="test">
+                                <div class="cross-box"></div>
+                                <div class="cross-box"></div>
+                                <div class="cross-box"></div>
+                                <div class="cross-box"></div>
+                            </div>
+                            <div class="test">
+                                <div>qq</div>
+                                <div>aad</div>
+                                <div>q34</div>
+                                <div>qcxv</div>
+                            </div>
+                        </div>
+                    </details>
+                    <details id="">
+                        <summary>
+                            <span> 네모 </span>
+                            <span> 마케팅팀 </span>
+                        </summary>
+                        <div>김부장</div>
+                        <div>이대리</div>
+                        <div>정사원</div>
+                    </details>
+                </details>
+            </section>
+            <div class="test">
+                <div class="cross-box"></div>
+
+                <div class="cross-box"></div>
+            </div>
+            <div class="test">
+                <div>qq</div>
+                <div>qq</div>
+            </div>
+            <section class="section_info">
+                <h2>부서원</h2>
+            </section>
+        </main>
+        <div class="tree-view">
+            <ul>
+                <li>
+                    <details open>
+                        <summary>Root</summary>
+                        <ul>
+                            <li>
+                                <details open>
+                                    <summary>Branch 1</summary>
+                                    <ul>
+                                        <li>Leaf 1</li>
+                                        <li>Leaf 2</li>
+                                    </ul>
+                                </details>
+                            </li>
+                            <li>
+                                <details open>
+                                    <summary>Branch 2</summary>
+                                    <ul>
+                                        <li>Leaf 3</li>
+                                    </ul>
+                                </details>
+                            </li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
