@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Before and After Example</title>
+        <style>
+            .decorated {
+                position: relative;
+                padding: 20px;
+                background-color: lightblue;
+                color: darkblue;
+                text-align: center;
+            }
+
+            .decorated::before {
+                content: "#";
+                color: red;
+                font-size: 24px;
+            }
+            .decorated::after {
+                content: "★";
+                color: gold;
+                font-size: 24px;
+            }
+
+            .decorated::before {
+                margin-right: 5px;
+            }
+
+            .decorated::after {
+                margin-left: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="decorated">Welcome to My Website</div>
+    </body>
+</html>
