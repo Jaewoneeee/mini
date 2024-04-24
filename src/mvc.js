@@ -33,11 +33,12 @@ export class TeamModel extends Subject {
     }
 }
 
+// TODO: 옵저버 패턴 불필요. 잘못사용되고 있음. 한번 그리면 될걸 노티로 계속 변경
 export class TeamView extends Observer {
     constructor(containerId, detailsContainerId) {
         super();
-        this.container = document.getElementById(containerId);
-        this.detailsContainer = document.getElementById(detailsContainerId);
+        this.container = document.getElementById(containerId); // TODO: 옵저버 패턴 불필요. 잘못사용되고 있음. 한번 그리면 될걸 노티로 계속 변경
+        this.detailsContainer = document.getElementById(detailsContainerId); // TODO: 옵저버 패턴 불필요. 잘못사용되고 있음. 한번 그리면 될걸 노티로 계속 변경
         console.log("View's This : ", this);
     }
 
@@ -46,8 +47,10 @@ export class TeamView extends Observer {
     }
 
     render(teams) {
+        // TODO: render메소드에 기능이 많음. generate와 event구분하기
+        // TODO: 옵저버 패턴 불필요. 잘못사용되고 있음
         console.log(teams);
-        this.container.innerHTML = "";
+        this.container.innerHTML = ""; // TODO: 리플로우 비용 생각
         const ul = document.createElement("ul");
         ul.className = "tree";
         teams.forEach((team) => {
@@ -73,7 +76,7 @@ export class TeamView extends Observer {
     }
 
     displayMemberDetails(member) {
-        this.detailsContainer.innerHTML = `<p>나이: ${member.name}</p><p>부서: ${member.department}</p><p>나이: ${member.age}</p>`;
+        this.detailsContainer.innerHTML = `<p>나이: ${member.name}</p><p>부서: ${member.department}</p><p>나이: ${member.age}</p>`; //TODO: 리플로우 비용
         // const test = document.createElement("p");
         // test.textContent = "test";
         // this.detailsContainer.appendChild(test);

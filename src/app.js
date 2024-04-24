@@ -3,6 +3,7 @@ import { TeamModel, TeamView, TeamController } from "./mvc.js";
 const model = new TeamModel();
 const view = new TeamView("team-container", "details-container");
 const controller = new TeamController(model, view);
+
 class Team {
     constructor(name, members) {
         this.name = name;
@@ -19,6 +20,7 @@ class TeamMember {
 }
 
 const teamData = [
+    // TODO: 데이터 구조 개선(확장성 고려할것. 이 팀 밑에 한단계 더 팀이 들어간다면?)
     {
         name: "개발팀",
         members: [
