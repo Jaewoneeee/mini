@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>조직도</title>
+        <style>
+            .contents {
+                display: flex;
+            }
+            .section_chart {
+                width: 300px;
+                height: 450px;
+                margin: 10px;
+                padding: 10px;
+                border: solid 1px black;
+            }
+            .section_info {
+                width: 300px;
+                height: 450px;
+                margin: 10px;
+                padding: 10px;
+                border: solid 1px black;
+            }
+
+            .section_chart .tree summary {
+                cursor: pointer;
+                list-style-type: none;
+            }
+
+            .section_chart .tree summary::-webkit-details-marker {
+                display: none;
+            }
+
+            .section_chart .tree ul {
+                list-style: none;
+                line-height: 2em;
+            }
+
+            .section_chart .tree li {
+                position: relative;
+            }
+
+            .section_chart .tree li::before {
+                position: absolute;
+                left: -10px;
+                top: 0px;
+                border-left: 1px solid gray;
+                border-bottom: 1px solid gray;
+                content: "";
+                width: 8px;
+                height: 1em;
+            }
+
+            .section_chart .tree li::after {
+                position: absolute;
+                left: -10px;
+                bottom: 0px;
+                border-left: 1px solid gray;
+                content: "";
+                width: 8px;
+                height: 100%;
+            }
+
+            .section_chart .tree li:last-child::after {
+                display: none;
+            }
+
+            .section_chart .tree summary::before {
+                position: absolute;
+                content: "+";
+                left: -1em;
+                top: 0.7em;
+                background: gray;
+                display: block;
+                width: 13px;
+                height: 13px;
+                z-index: 10;
+                text-align: center;
+                line-height: 1em;
+            }
+
+            .section_chart .tree details[open] > summary::before {
+                content: "-";
+            }
+        </style>
+    </head>
+    <body>
+        <main class="contents">
+            <section class="section_chart">
+                <h2>조직도</h2>
+                <!-- TODO: data관련해서 더미 태그를 쓸 필요가 없다. -->
+                <div class="tree">
+                    <ul>
+                        <li>
+                            <details>
+                                <summary>F-lab</summary>
+                                <div id="team-container"></div>
+                            </details>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="section_info">
+                <h2>팀원</h2>
+                <div id="details-container"></div>
+            </section>
+        </main>
+        <script type="module" src="app.js"></script>
+    </body>
+</html>
