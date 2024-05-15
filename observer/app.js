@@ -1,12 +1,5 @@
-import { TeamModel } from "./src/model/TeamModel.js";
-import { TeamController } from "./src/controller/TeamController.js";
-import { TeamView } from "./src/view/TeamView.js";
-
-const model = new TeamModel();
-const view = new TeamView("team-container", "details-container");
-const controller = new TeamController(model, view);
-// TODO: 팀뷰는 팀뷰대로 그냥 따로 그리고
-// TODO: 디테일뷰에서 온클릭 발생시에 랜더링 되도록 ㅇㅇ..
+import { TeamView } from "./src/model/TeamView.js";
+import { DetailsView } from "./src/view/DetailView.js";
 
 class Team {
     constructor(name, members) {
@@ -50,7 +43,19 @@ const teamData = [
     },
 ];
 
+const teamView = new TeamView("team-container");
+const detailsView = new DetailsView("details-container");
+
+// detailsView를 teamView의 옵저버로 만들자
+teamView.addObserver(detailsView);
+//teamView.update(teamData);
+const teams = [];
+
 teamData.forEach((teamInfo) => {
     const team = new Team(teamInfo.name, teamInfo.members);
-    controller.addTeam(team);
+    teams.push(team);
 });
+teamView.renderTeams(teams);
+
+//초과의존
+//SSOT 단일 진실 공급원
